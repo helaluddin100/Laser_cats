@@ -1,0 +1,110 @@
+@font-face {
+  font-family: "ethnocentric";
+  src: url("../fonts/ethnocentric\ rg.otf");
+}
+.mint-next-bg {
+  background: url("../assets/mint-bg.jpg");
+  /* background-size: cover; */
+  background-size: 100%;
+  position: relative;
+}
+.mint-next-container {
+  width: 90%;
+  margin: auto;
+  padding: 100px 0;
+  
+}
+
+.next-mint-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+.bike {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.bike img {
+  width: 800px;
+}
+.bike-mob{
+    display: none;
+  }
+@media only screen and (max-width: 1600px) {
+  .total-supply img {
+    width: 400px;
+  }
+  .current-price img {
+    width: 400px;
+  }
+  .next-mint-bottom img {
+    width: 500px;
+  }
+  .bike img {
+    width: 600px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .mint-next-container {
+    padding: 50px 0;
+  }
+
+  .next-mint-top {
+    margin-bottom: 50px;
+  }
+  .total-supply img {
+    width: 200px;
+  }
+  .current-price img {
+    width: 200px;
+  }
+  .next-mint-bottom img {
+    width: 300px;
+  }
+  .bike img {
+    width: 300px;
+  }
+}
+@media only screen and (max-width: 912px) {
+    .mint-next-container {
+        padding: 50px 0 0 0;
+        
+      }
+    .next-mint-top {
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    .next-mint-bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+  .total-supply img {
+    width: 100%;
+  }
+  .current-price img {
+    width: 100%;
+  }
+
+  .next-mint-bottom img {
+    width: 100%;
+  }
+  .bike {
+    position: absolute;
+    right: 0;
+    bottom: -800px;
+    display: none;
+  }
+  .bike-mob img {
+    width: 100%;
+    margin-bottom: -10px;
+  }
+  .bike-mob{
+    display: block;
+  }
+}

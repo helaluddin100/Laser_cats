@@ -1,0 +1,25 @@
+.loading {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    
+    img {
+        content: url('../assets/black.png');
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+    }
+
+    .spritesheet-loading {
+        position: fixed;
+        z-index: 20;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 30vw;
+    }
+}

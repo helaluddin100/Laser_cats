@@ -1,0 +1,51 @@
+.landing {
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+}
+
+.landingvideo video {
+  width: 100%;
+  height: auto;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
+.landingvideo audio {
+  position: absolute;
+  top: 90%;
+  left: 7%;
+  width: 15%;
+}
+
+.enterbutton-container {
+  position: absolute;
+  left: 82%;
+  top: 76.4%;
+  width: 16.5vw;
+  height: auto;
+}
+.enterbutton-container .spritesheet-container {
+  visibility: hidden;
+}
+.enterbutton-container :hover .spritesheet-container {
+  visibility: visible;
+}
+
+.socialmedialink-container {
+  position: absolute;
+  top: 73%;
+  left: 2.5%;
+}
+
+.socialmedialink {
+  display: inline-block;
+  margin: 0.3vw;
+  max-width: 16%;
+  width: 6vw;
+}/*# sourceMappingURL=landing.css.map */

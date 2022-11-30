@@ -1,0 +1,75 @@
+.team {
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 20px;
+}
+.team .team-title h1 {
+  color: greenyellow;
+  text-transform: uppercase;
+  font-family: "Kdam Thmor Pro", sans-serif;
+  font-size: 40px;
+}
+.team .team-title h2 {
+  color: white;
+  text-transform: uppercase;
+  font-family: "Kdam Thmor Pro", sans-serif;
+  font-size: 20px;
+  max-width: 1000px;
+  margin: auto;
+  text-align: left;
+}
+.team .team-images {
+  margin: auto;
+  width: 80%;
+}
+.team .team-images .mem-image {
+  display: inline-block;
+  max-width: 450px;
+  max-height: 450px;
+  margin: 3%;
+}
+.team .team-images .mem-image .mem-title {
+  color: greenyellow;
+  font-weight: bolder;
+}
+.team .team-images .mem-image img {
+  max-width: 450px;
+  height: auto;
+  display: block;
+  margin: auto;
+  border: 3px white solid;
+}
+.team .team-images .mem-image p {
+  position: relative;
+  padding: 0.1rem;
+  color: white;
+  font-family: "Kdam Thmor Pro", sans-serif;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .team {
+    width: 100%;
+  }
+  .team .team-title h1 {
+    font-size: 25px;
+  }
+  .team .team-title h2 {
+    font-size: 15px;
+  }
+  .team .team-images {
+    width: 100%;
+  }
+  .team .team-images p {
+    font-size: 12px;
+  }
+  .team .team-images .mem-image {
+    max-width: 50vw;
+    margin: 4%;
+  }
+  .team .team-images .mem-image img {
+    max-width: 50vw;
+  }
+}/*# sourceMappingURL=team.css.map */

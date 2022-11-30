@@ -1,0 +1,148 @@
+.player-container-main {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+
+    .player-container{
+        position: relative;
+        width: 100%;
+
+        >*
+        {
+            padding: 0rem 0;
+            color: rgb(202, 202, 202);
+        }
+    
+        .player
+        {
+            width:590px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: transparent;
+            background: url('../assets/bg_audioplayer_large.png');
+            background-repeat: no-repeat;
+            background-size: 600px 145px;
+            
+            .song {
+                width: 200px;
+                margin-top: 4.5%;
+
+                .title{
+                    white-space: nowrap; 
+                    width: 180px;
+                    overflow: hidden;
+                    text-overflow: ellipsis; 
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-family: 'Kdam Thmor Pro', sans-serif;
+                    font-weight: bolder;
+                    color: #40ffae;
+                    font-size:large;
+                    margin: auto;
+                    margin-bottom: 8%;
+                }
+                .navigation{
+                    width: 100%;
+
+                    .navigation_wrapper
+                    {
+                        min-width: 100%;
+                        background-color: #540044;
+                        height: 5px;
+                        cursor: pointer;
+                        
+                        .seek_bar{
+                            width: 0;
+                            height: 100%;
+                            background-color: #40ffae;
+                        }
+
+                    }
+                }
+            }
+            .controls{
+                font-size: inherit;
+                display: flex;
+                align-items: center;
+                margin-right: 10.5%;
+                margin-top: 6%;
+                border: none;
+
+                .btn_action
+                {
+                    cursor: pointer;
+                    background: none;
+                    margin: 2%;
+                    padding: 2%;
+                    border: none;
+                }
+                
+                .btn_play {
+                    content: url("../assets/button_audioplayer_play.png");
+                    width: 60px;
+                }
+                .btn_pause {
+                    content: url("../assets/button_audioplayer_pause.png");
+                    width: 60px;
+                }
+                .btn_playprev {
+                    content: url("../assets/button_audioplayer_prev.png");
+                    width: 50px;
+                }
+                .btn_playnext {
+                    content: url("../assets/button_audioplayer_next.png");
+                    width: 50px;
+                }
+            }
+        }
+
+        .player-minimized {
+            background: url('../assets/bg_audioplayer_small.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+
+            .player-image {
+                img {
+                    width: 120px;
+                    height: 120px;
+                }
+            }
+        }
+
+        .player-image {
+            img {
+                width: 137px;
+                height: 140px;
+                content: url('../assets/cat_audioplayer.png');
+            }
+        }
+
+        .btn_toggleplayer {
+            position: absolute;
+            top: 5px;
+            right: -10px;
+            cursor: pointer;
+            background: none;
+            border: none;
+
+            .btn_expand{
+                content: url('../assets/button_audioplayer_expand.png');
+                width: 40px;
+            }
+    
+            .btn_collapse {
+                content: url('../assets/button_audioplayer_collapse.png');
+                width: 40px;
+            }
+        }
+
+
+    }
+
+    button {
+        &:hover{
+            -webkit-filter: brightness(125%);
+        }
+    }
+}

@@ -1,0 +1,296 @@
+@font-face {
+    font-family: "ethnocentric";
+    src: url("../fonts/ethnocentric\ rg.otf");
+}
+
+.full-list-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin-top: 128px;
+}
+
+.filters-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding: 0 38px;
+}
+
+.filter-x {
+    display: none;
+}
+
+.btn-filters {
+    font-family: "ethnocentric", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 120%;
+    color: #ffffff;
+    width: 100%;
+    padding: 22px;
+    display: flex;
+    justify-content: center;
+    background: #fd7dff;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-filters:hover {
+    background: #cf36d2;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px -40px 46px -58px inset;
+}
+
+.filter-btn {
+    display: none;
+}
+
+.filters {
+    /* background: #402daf52; */
+    border-radius: 0 78px 78px 0;
+    width: 20%;
+    padding: 150px 20px 20px 20px;
+}
+
+.filter-name {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+.filter-name img {
+    transition: 0.3s;
+}
+
+.for-sale {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 32px;
+    border-top: 1px solid #8e8e8e;
+    border-bottom: 1px solid #8e8e8e;
+    margin-top: 52px;
+}
+
+.select-filter {
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.checkboxes {
+    flex-direction: column;
+    display: flex;
+    opacity: 0;
+    z-index: -1;
+    gap: 16px;
+    transition: 0.1s;
+    position: absolute;
+}
+
+.check {
+    display: flex;
+    align-content: center;
+    gap: 16px;
+    margin-left: 20px;
+}
+
+.check p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: "ethnocentric", sans-serif;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.check p:hover {
+    color: #cf36d2;
+}
+
+.active-filter~.checkboxes {
+    position: static;
+    margin-top: 16px;
+    opacity: 1;
+    z-index: 1;
+}
+
+.active-filter img {
+    transform: rotate(180deg);
+}
+
+.rocky-pink-30 {
+    font-family: "ethnocentric", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 120%;
+    color: #fd7dff;
+}
+
+.rocky-white-58 {
+    font-family: "ethnocentric", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 58px;
+    line-height: 120%;
+    color: #ffffff;
+}
+
+input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    border: 1px solid #ffffff;
+    border-radius: 7px;
+    /* Not removed via appearance */
+    margin: 0;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    border: 1px solid #ffffff;
+    border-radius: 7px;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 27px;
+    height: 27px;
+    transform: translateY(-0.075em);
+}
+
+input[type="checkbox"] {
+    /* ...existing styles */
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 21px;
+    height: 21px;
+    border-radius: 6px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 21px;
+    height: 21px;
+    border-radius: 6px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]::before {
+    background-color: #ff00c6;
+}
+
+
+/* New Style Here  */
+
+.sb-btn {
+    position: relative;
+}
+
+.sb-btn-text {
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+}
+
+.sb-btn-text p {
+    color: #ffffff;
+    font-size: 18px;
+    font-family: "ethnocentric", sans-serif;
+}
+
+@media only screen and (max-width: 1240px) {
+    .filters {
+        background: #000000;
+        border-radius: 0 78px 78px 0;
+        width: 400px;
+        padding: 100px 20px 20px 20px;
+    }
+    .sb-btn-text {
+        width: 200px;
+    }
+    .all-list {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .filter-btn {
+        display: flex;
+        position: absolute;
+        top: 152px;
+        left: 40px;
+        cursor: pointer;
+    }
+    .filter-btn svg path {
+        transition: 0.3s;
+    }
+    .pink-svg svg path {
+        fill: #fd7dff;
+    }
+    .filter-x {
+        display: block;
+        position: absolute;
+        right: 52px;
+        top: 52px;
+        cursor: pointer;
+    }
+    .full-list-content {
+        grid-template-columns: 1fr;
+    }
+    .filters {
+        left: 0px;
+        position: absolute;
+        transition: 0.4s;
+        z-index: 999;
+    }
+    .hidden-filters {
+        left: -690px !important;
+        transition: 0.4s;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .filters-intro {
+        padding: 0;
+    }
+    .filters {
+        background: #000000;
+        width: 85%;
+        padding: 100px 12px 100px 30px;
+    }
+}
+
+.load-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.sbg-btn {
+    background: #a70889;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    font-family: "ethnocentric";
+}

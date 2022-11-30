@@ -1,0 +1,83 @@
+.footer-line {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.email-container {
+  margin: 20px;
+}
+
+.email-form-container {
+  margin: 20px;
+}
+
+.email-label {
+  color: white;
+  font-size: 20px;
+  font-family: "Kdam Thmor Pro", sans-serif;
+  justify-content: center;
+}
+
+.email-input-text {
+  color: black;
+  line-height: 2em;
+  font-family: "Kdam Thmor Pro", sans-serif;
+  justify-content: center;
+}
+
+.email-submit {
+  color: white;
+  background-color: green;
+  margin: 10px;
+  padding: 9px;
+  font-family: "Kdam Thmor Pro", sans-serif;
+  justify-content: center;
+}
+
+.email-submit:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.socialmedialink-footer-container {
+  max-height: 100px;
+}
+
+.socialmedialink-footer {
+  display: inline-block;
+  margin: 10px;
+  max-width: 15%;
+  width: 50px;
+}
+
+#youtubelink-footer {
+  content: url("../assets/img_youtube.png");
+}
+
+#instalink-footer {
+  content: url("../assets/img_insta.png");
+}
+
+#discordlink-footer {
+  content: url("../assets/img_discord.png");
+}
+
+#twitterlink-footer {
+  content: url("../assets/img_twitter.png");
+}
+
+.copyright {
+  font-family: "Kdam Thmor Pro", sans-serif;
+  font-size: large;
+  color: white;
+  margin-top: 0;
+}/*# sourceMappingURL=footer.css.map */
