@@ -13,13 +13,8 @@ import reloadBtn from "../assets/reload-btn.png";
 import itemNumberPlate from "../assets/item-number-plate.png";
 import myCollection from "../assets/my-collection.png";
 import itemImg1 from "../assets/cat1.jpg";
-import itemImg2 from "../assets/cat2.jpg";
-import itemImg3 from "../assets/cat3.jpg";
-import itemImg4 from "../assets/cat4.jpg";
 import nftBoxBorder from "../assets/nft-box-border.png";
-import arrowDown from "../assets/arrow-down.png";
 import opensea from "../assets/opensea.png";
-import modalItemNameBg from "../assets/modal-item-name-bg.png";
 import x from "../assets/x.svg";
 
 import { getDefaultProvider, utils } from "ethers";
@@ -35,6 +30,7 @@ const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState();
 
   const [filterActive, setFilterActive] = useState(false);
+
   const _toggleFilters = () => {
     setFilterActive(!filterActive);
   };
@@ -62,7 +58,7 @@ const Gallery = () => {
   const [nfts, setNfts] = useState([]);
   const [showCount, setShowCount] = useState(perPage);
   const [address, setAddress] = useState(
-    "0x477F885f6333317f5B2810ECc8AfadC7d5b69dD2"
+    "0xED5AF388653567Af2F388E6224dC7C4b3241C544"
   );
   const [errorMessageText, setErrorMessageText] = useState("");
   const [startToken, setStartToken] = useState("");
@@ -95,6 +91,19 @@ const Gallery = () => {
     }
   }, [showCount, address]);
 
+  // ==============filter section================
+  const [inputField, setInputField] = useState({
+    Azuki: "true",
+    Human: "true",
+    rare: "false",
+    uncommon: "false",
+  });
+
+  const onChange = (e) => {
+    setInputField({ ...inputField, [e.target.value]: e.target.checked });
+  };
+  console.log(inputField);
+
   return (
     <div className="gallery-container">
       <Header />
@@ -111,8 +120,8 @@ const Gallery = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M6.88096 3.33325H33.1203C35.08 3.33325 36.6673 4.96834 36.6673 6.98701V9.53951C36.6673 10.5188 36.2846 11.4592 35.6051 12.145L24.7634 23.1116C24.5764 23.3025 24.3224 23.4086 24.0599 23.4068L14.9822 23.3785C14.7059 23.3785 14.4434 23.2601 14.2546 23.0533L4.29151 12.0956C3.67547 11.4185 3.33398 10.5241 3.33398 9.59608V6.98878C3.33398 4.97011 4.92129 3.33325 6.88096 3.33325ZM15.4675 26.3735L23.5584 26.3982C24.0629 26.4 24.4713 26.8225 24.4713 27.3404V31.8921C24.4713 32.4118 24.1762 32.882 23.7163 33.0994L16.3718 36.5481C16.2002 36.6277 16.0183 36.6666 15.8364 36.6666C15.5945 36.6666 15.3525 36.5959 15.1414 36.4562C14.7725 36.2123 14.5494 35.7916 14.5494 35.3408V27.3157C14.5494 26.7942 14.9613 26.3717 15.4675 26.3735Z"
             fill="white"
           />
@@ -157,25 +166,49 @@ const Gallery = () => {
                 </div>
                 <div className="checkboxes">
                   <div className="check">
-                    <input type="checkbox" />
-                    <p className="acme-white-24">LEGENDARY</p>
+                    <input
+                      type="checkbox"
+                      name="Azuki"
+                      checked={inputField.Azuki}
+                      value="Azuki"
+                      onChange={onChange}
+                    />
+                    <p className="acme-white-24">Azuki</p>
                   </div>
                   <div className="check">
-                    <input type="checkbox" />
-                    <p className="acme-white-24">EPIC</p>
+                    <input
+                      type="checkbox"
+                      name="Human"
+                      value="Human"
+                      onChange={onChange}
+                      checked={inputField.Human}
+                    />
+                    <p className="acme-white-24">Human</p>
                   </div>
-                  <div className="check">
-                    <input type="checkbox" />
+                  {/* <div className="check">
+                    <input
+                      type="checkbox"
+                      name="rare"
+                      onChange={onChange}
+                      value="rare"
+                      checked={inputField.rare}
+                    />
                     <p className="acme-white-24">RARE</p>
                   </div>
                   <div className="check">
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      name="uncommon"
+                      onChange={onChange}
+                      value="uncommon"
+                      checked={inputField.uncommon}
+                    />
                     <p className="acme-white-24">UNCOMMON</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
-            <div className="select-filter">
+            {/* <div className="select-filter">
               <div className="sb-btn">
                 <div className="sb-btn-bg">
                   <img src={galleryBtnBg} />
@@ -202,7 +235,7 @@ const Gallery = () => {
                   </div>
                   <div className="check">
                     <input type="checkbox" />
-                    <p className="acme-white-24">EPIC</p>
+                    <p className="acme-white-24">Human</p>
                   </div>
                   <div className="check">
                     <input type="checkbox" />
@@ -243,7 +276,7 @@ const Gallery = () => {
                   </div>
                   <div className="check">
                     <input type="checkbox" />
-                    <p className="acme-white-24">EPIC</p>
+                    <p className="acme-white-24">Human</p>
                   </div>
                   <div className="check">
                     <input type="checkbox" />
@@ -283,7 +316,7 @@ const Gallery = () => {
                   </div>
                   <div className="check">
                     <input type="checkbox" />
-                    <p className="acme-white-24">EPIC</p>
+                    <p className="acme-white-24">Human</p>
                   </div>
                   <div className="check">
                     <input type="checkbox" />
@@ -323,7 +356,7 @@ const Gallery = () => {
                   </div>
                   <div className="check">
                     <input type="checkbox" />
-                    <p className="acme-white-24">EPIC</p>
+                    <p className="acme-white-24">Human</p>
                   </div>
                   <div className="check">
                     <input type="checkbox" />
@@ -363,7 +396,7 @@ const Gallery = () => {
                   </div>
                   <div className="check">
                     <input type="checkbox" />
-                    <p className="acme-white-24">EPIC</p>
+                    <p className="acme-white-24">Human</p>
                   </div>
                   <div className="check">
                     <input type="checkbox" />
@@ -403,7 +436,7 @@ const Gallery = () => {
                   </div>
                   <div className="check">
                     <input type="checkbox" />
-                    <p className="acme-white-24">EPIC</p>
+                    <p className="acme-white-24">Human</p>
                   </div>
                   <div className="check">
                     <input type="checkbox" />
@@ -443,7 +476,7 @@ const Gallery = () => {
                   </div>
                   <div className="check">
                     <input type="checkbox" />
-                    <p className="acme-white-24">EPIC</p>
+                    <p className="acme-white-24">Human</p>
                   </div>
                   <div className="check">
                     <input type="checkbox" />
@@ -483,7 +516,7 @@ const Gallery = () => {
                   </div>
                   <div className="check">
                     <input type="checkbox" />
-                    <p className="acme-white-24">EPIC</p>
+                    <p className="acme-white-24">Human</p>
                   </div>
                   <div className="check">
                     <input type="checkbox" />
@@ -495,7 +528,7 @@ const Gallery = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="gallery-items">
             <div className="items-con">
@@ -519,41 +552,45 @@ const Gallery = () => {
               </div>
               <div className="items-groups">
                 {nfts.length > 0
-                  ? nfts.slice(0, showCount).map((nft, key) => (
-                      <Link to="/nft-info">
-                        <div className="item">
-                          <div className="item-img-box">
-                            <div className="item-img">
-                              <img
-                                src={nft.media[0].gateway}
-                                alt="Item Image"
-                              />
-                            </div>
-                            <div className="item-img-border">
-                              <img src={nftBoxBorder} alt="Item Image" />
-                            </div>
-                          </div>
-                          <div className="item-name-no">
-                            <div className="item-name-no-con">
-                              <div className="item-name-bg">
-                                <img src={itemNumberPlate} />
+                  ? nfts
+                      .slice(0, showCount)
+                      .filter((x) => inputField[x.metadata.attributes[0].value])
+                      .map((nft, key) => (
+                        <Link to="/nft-info">
+                          <div className="item">
+                            <div className="item-img-box">
+                              <div className="item-img">
+                                <img
+                                  src={nft.media[0].gateway}
+                                  alt="Item Image"
+                                />
                               </div>
-                              <div className="name-no">
-                                <div>
-                                  <p>{nft.contractMetadata.name}</p>
-                                </div>
-                                <div>
-                                  <p>
-                                    <span>No.</span>
-                                    {parseInt(nft.id.tokenId, 16)}
-                                  </p>
-                                </div>
+                              <div className="item-img-border">
+                                <img src={nftBoxBorder} alt="Item Image" />
                               </div>
                             </div>
+                            <div className="item-name-no">
+                              <div className="item-name-no-con">
+                                <div className="item-name-bg">
+                                  <img src={itemNumberPlate} />
+                                </div>
+                                <div className="name-no">
+                                  <div>
+                                    <p>{nft.metadata.attributes[0].value}</p>
+                                    <p>{nft.contractMetadata.name}</p>
+                                  </div>
+                                  <div>
+                                    <p>
+                                      <span>No.</span>
+                                      {parseInt(nft.id.tokenId, 16)}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </Link>
-                    ))
+                        </Link>
+                      ))
                   : null}
 
                 {/* Modal */}
