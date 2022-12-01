@@ -28,7 +28,7 @@ const Home = () => {
       >
         <Loading />
       </div>
-      <div class="home">
+      <div className="home">
         <div className="video-container">
           <div className="mainvideo">
             <video
@@ -43,32 +43,32 @@ const Home = () => {
             />
           </div>
 
-          <div id="about-container" class="infolink-container">
+          <div id="about-container" className="infolink-container">
             <Link to="/about">
               <SpriteSheet_Main_About />
             </Link>
           </div>
-          <div id="tavern77-container" class="infolink-container">
+          <div id="tavern77-container" className="infolink-container">
             <Link to="/home">
               <SpriteSheet_Main_Tavern77 />
             </Link>
           </div>
-          <div id="team-container" class="infolink-container">
+          <div id="team-container" className="infolink-container">
             <Link to="/team">
               <SpriteSheet_Main_Team />
             </Link>
           </div>
-          <div id="merc-container" class="infolink-container">
+          <div id="merc-container" className="infolink-container">
             <Link to="/home">
               <SpriteSheet_Main_Merc />
             </Link>
           </div>
-          <div id="contracts-container" class="infolink-container">
+          <div id="contracts-container" className="infolink-container">
             <Link to="/home">
               <SpriteSheet_Main_Contracts />
             </Link>
           </div>
-          <div id="roadmap-container" class="infolink-container">
+          <div id="roadmap-container" className="infolink-container">
             <Link to="/roadmap">
               <SpriteSheet_Main_Roadmap />
             </Link>

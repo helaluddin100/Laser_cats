@@ -62,7 +62,7 @@ const Landing = () => {
       >
         <Loading />
       </div>
-      <div class="landing">
+      <div className="landing">
         <div className="video-container">
           <div className="landingvideo">
             <video

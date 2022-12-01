@@ -294,3 +294,7 @@ input[type="checkbox"]::before {
     color: #fff;
     font-family: "ethnocentric";
 }
+
+.d-none {
+    display: none;
+}

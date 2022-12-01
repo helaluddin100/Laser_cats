@@ -12,27 +12,27 @@ import axios from "axios";
 
 const Nftinfo = () => {
   const [toggleState, setToggleState] = useState(1);
-  const { id } = useParams()
-  const [nft, setNft] = useState()
+  const { id } = useParams();
+  const [nft, setNft] = useState();
 
   const toggleTab = (inde) => {
     setToggleState(inde);
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${process.env.REACT_APP_alchemy_api_key}/getNFTMetadata`;
 
-        var config = {
-          method: "get",
-          url: `${baseURL}?contractAddress=0xED5AF388653567Af2F388E6224dC7C4b3241C544&tokenId=${id}`,
-          headers: {},
-        };
-        axios(config)
-          .then((response) => {
-            setNft(response.data);
-            console.log(response.data);
-          })
-          .catch((error) => console.log(error.message));
+    var config = {
+      method: "get",
+      url: `${baseURL}?contractAddress=0xED5AF388653567Af2F388E6224dC7C4b3241C544&tokenId=${id}`,
+      headers: {},
+    };
+    axios(config)
+      .then((response) => {
+        setNft(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => console.log(error.message));
   }, [id]);
   return (
     <div className="nftinfo-container">
@@ -43,10 +43,10 @@ const Nftinfo = () => {
           <div className="nftinfo-left">
             <div className="nftinfo-img-con">
               <div className="nftinfo-img">
-                <img src={itemImg1} alt="" />
+                <img src={nft?.metadata.image} alt="" />
               </div>
               <div className="nftinfo-img-border">
-                <img src={nft?.metadata.image} alt="" />
+                <img src={nftBoxBorder} alt="" />
               </div>
             </div>
           </div>
@@ -54,35 +54,60 @@ const Nftinfo = () => {
             <div className="nftinfo-right-con">
               <div className="nftinfo-top">
                 <div>
-                  <p>Laser Cat</p> 
+                  <p>{nft?.contractMetadata.name}</p>
                 </div>
                 <div>
                   <p>
-                    <span>NO: </span>{parseInt(nft?.id.tokenId.toString(), 16)}
+                    <span>NO: </span>
+                    {parseInt(nft?.id.tokenId.toString(), 16)}
                   </p>
                 </div>
               </div>
               <div className="nftinfo-mid">
                 <div className="nftinfo-mid-box-group">
-                  <div className="nftinfo-mid-box"><p>Type</p></div>
-                  <div className="nftinfo-mid-box"><p>Type</p></div>
+                  <div className="nftinfo-mid-box">
+                    <p>{nft?.metadata.attributes[0].value}</p>
+                  </div>
+                  <div className="nftinfo-mid-box">
+                    <p>{nft?.metadata.attributes[1].value}</p>
+                  </div>
                 </div>
                 <div className="nftinfo-mid-box-group">
-                  <div className="nftinfo-mid-box"><p>Type</p></div>
-                  <div className="nftinfo-mid-box"><p>Type</p></div>
+                  <div className="nftinfo-mid-box">
+                    <p>{nft?.metadata.attributes[2].value}</p>
+                  </div>
+                  <div className="nftinfo-mid-box">
+                    <p>{nft?.metadata.attributes[3].value}</p>
+                  </div>
                 </div>
                 <div className="nftinfo-mid-box-group">
-                  <div className="nftinfo-mid-box"><p>Type</p></div>
-                  <div className="nftinfo-mid-box"><p>Type</p></div>
+                  <div className="nftinfo-mid-box">
+                    <p>{nft?.metadata.attributes[4].value}</p>
+                  </div>
+                  <div className="nftinfo-mid-box">
+                    <p>{nft?.metadata.attributes[5].value}</p>
+                  </div>
                 </div>
                 <div className="nftinfo-mid-box-group">
-                  <div className="nftinfo-mid-box"><p>Type</p></div>
-                  <div className="nftinfo-mid-box"><p>Type</p></div>
+                  <div className="nftinfo-mid-box">
+                    <p>{nft?.metadata.attributes[6].value}</p>
+                  </div>
+                  <div className="nftinfo-mid-box">
+                    <p>{nft?.contractMetadata.tokenType}</p>
+                  </div>
                 </div>
               </div>
               <div className="nftinfo-bottom">
                 <div className="nftinfo-bottom-box">
-                <p>View On....</p>
+                  <a
+                    href={`https://opensea.io/assets/ethereum/${
+                      nft?.contract.address
+                    }/${parseInt(nft?.id.tokenId.toString(), 16)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <p>View On....</p>
+                  </a>
                 </div>
               </div>
             </div>

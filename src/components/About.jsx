@@ -33,7 +33,7 @@ const About = ({ showInfoText }) => {
   }
 
   return (
-    <div class="about-container">
+    <div className="about-container">
       <Header />
       <div
         className="spritesheet-loading-container"
@@ -41,8 +41,8 @@ const About = ({ showInfoText }) => {
       >
         <Loading />
       </div>
-      <div class="about">
-        <div class="about-bg">
+      <div className="about">
+        <div className="about-bg">
           <div className="aboutvideo">
             <video
               preload="none"
@@ -129,13 +129,13 @@ const About = ({ showInfoText }) => {
           </button>
 
           <div
-            class="about-popup-container"
+            className="about-popup-container"
             style={{ visibility: popup === false ? "hidden" : "visible" }}
           >
             <div className="close">
               <img onClick={(event) => handlePopup(event)} />
             </div>
-            <div class="about-popup-bg">
+            <div className="about-popup-bg">
               {popupHeaderText == "Laser Cats Collection" ? (
                 <Spritesheet_About_Popup_LCC />
               ) : popupHeaderText == "Our Mission" ? (
@@ -152,7 +152,7 @@ const About = ({ showInfoText }) => {
             </div>
             <div className="about-popup">
               <h
-                class={popup === true ? "about-info-header" : ""}
+                className={popup === true ? "about-info-header" : ""}
                 style={{
                   color:
                     popupHeaderText == "Laser Cats Collection"
@@ -170,7 +170,7 @@ const About = ({ showInfoText }) => {
               >
                 <u>{popupHeaderText}</u>
               </h>
-              <p class={popup === true ? "about-info" : ""}>{popupText}</p>
+              <p className={popup === true ? "about-info" : ""}>{popupText}</p>
             </div>
           </div>
         </div>

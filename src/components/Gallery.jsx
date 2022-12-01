@@ -53,7 +53,6 @@ const Gallery = () => {
   const toggleMadalCon = () => {
     setModalCon(!modalCon);
   };
-
   const perPage = 50;
   const [nfts, setNfts] = useState([]);
   const [showCount, setShowCount] = useState(perPage);
@@ -95,14 +94,50 @@ const Gallery = () => {
   const [inputField, setInputField] = useState({
     Blue: true,
     Human: true,
-    Red: false,
-    Spirit: false,
+    Red: true,
+    Spirit: true,
   });
 
   const onChange = (e) => {
     setInputField({ ...inputField, [e.target.value]: e.target.checked });
   };
-  console.log(inputField);
+
+  // ===================page reload=================
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
+  // ========================My Collection=====================
+  // const [wallet, setWalletAddress] = useState(
+  //   "0xcbcd0df9091ed3707df4e4a7d6c6ec09bdd040ec"
+  // );
+  const wallet = "0xcbcd0df9091ed3707df4e4a7d6c6ec09bdd040ec";
+  const [NFTs, setNFTs] = useState([]);
+
+  const fetchNFTs = async () => {
+    let nfts;
+    console.log("fetching nfts");
+    const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${process.env.REACT_APP_alchemy_api_key}/getNFTs/`;
+
+    if (!address.length) {
+      var requestOptions = {
+        method: "GET",
+      };
+
+      const fetchURL = `${baseURL}?owner=${wallet}`;
+
+      nfts = await fetch(fetchURL, requestOptions).then((data) => data.json());
+    } else {
+      console.log("fetching nfts for collection owned by address");
+      const fetchURL = `${baseURL}?owner=${wallet}&contractAddresses%5B%5D=${address}`;
+      nfts = await fetch(fetchURL, requestOptions).then((data) => data.json());
+    }
+
+    if (nfts) {
+      console.log("nfts:", nfts);
+      setNFTs(nfts.ownedNfts);
+    }
+  };
 
   return (
     <div className="gallery-container">
@@ -208,7 +243,7 @@ const Gallery = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="select-filter">
+            <div className="select-filter">
               <div className="sb-btn">
                 <div className="sb-btn-bg">
                   <img src={galleryBtnBg} />
@@ -528,7 +563,7 @@ const Gallery = () => {
                   </div>
                 </div>
               </div>
-            </div> */}
+            </div>
           </div>
           <div className="gallery-items">
             <div className="items-con">
@@ -537,154 +572,166 @@ const Gallery = () => {
                   <p>Filter 10,000</p>
                 </div>
                 <div className="bar-right">
-                  <button className="sbg-btn" onClick={toggleMadalCon}>
-                    <div className="sbg-btn-bg">
-                      <img src={myCollection} />
-                    </div>
-                    <div className="sbg-btn-text">
-                      <p>My Collection</p>
-                    </div>
-                  </button>
-                  <button className="sbg-btn reload-btn">
+                  {menuActive ? (
+                    <button className="sbg-btn" onClick={_toggleSidebar}>
+                      <div className="sbg-btn-bg">
+                        <img src={myCollection} />
+                      </div>
+                      <div className="sbg-btn-text">
+                        <p>All Collection</p>
+                      </div>
+                    </button>
+                  ) : (
+                    <button className="sbg-btn" onClick={toggleMadalCon}>
+                      <div className="sbg-btn-bg">
+                        <img src={myCollection} />
+                      </div>
+                      <div className="sbg-btn-text">
+                        <p>My Collection</p>
+                      </div>
+                    </button>
+                  )}
+
+                  <button className="sbg-btn reload-btn" onClick={refreshPage}>
                     <img src={reloadBtn} />
                   </button>
                 </div>
               </div>
-              <div className="items-groups">
-                {nfts.length > 0
-                  ? nfts
-                      .slice(0, showCount)
-                      .filter((x) => inputField[x.metadata.attributes[0].value])
-                      .map((nft, key) => (
-                        <Link to={`/nft-info/${nft.id.tokenId}`}>
-                          <div className="item">
-                            <div className="item-img-box">
-                              <div className="item-img">
-                                <img
-                                  src={nft.media[0].gateway}
-                                  alt="Item Image"
-                                />
-                              </div>
-                              <div className="item-img-border">
-                                <img src={nftBoxBorder} alt="Item Image" />
-                              </div>
-                            </div>
-                            <div className="item-name-no">
-                              <div className="item-name-no-con">
-                                <div className="item-name-bg">
-                                  <img src={itemNumberPlate} />
+              <div className={menuActive ? "collection d-none" : "collection "}>
+                <div className="items-groups">
+                  {nfts.length > 0
+                    ? nfts
+                        .slice(0, showCount)
+                        .filter(
+                          (x) => inputField[x.metadata.attributes[0].value]
+                        )
+                        .map((nft, key) => (
+                          <Link
+                            to={`/nft-info/${parseInt(nft.id.tokenId, 16)}`}
+                          >
+                            <div className="item">
+                              <div className="item-img-box">
+                                <div className="item-img">
+                                  <img
+                                    src={nft.media[0].gateway}
+                                    alt="Item Image"
+                                  />
                                 </div>
-                                <div className="name-no">
-                                  <div>
-                                    <p>{nft.metadata.attributes[0].value}</p>
-                                    <p>{nft.contractMetadata.name}</p>
-                                  </div>
-                                  <div>
-                                    <p>
-                                      <span>No.</span>
-                                      {parseInt(nft.id.tokenId, 16)}
-                                    </p>
-                                  </div>
+                                <div className="item-img-border">
+                                  <img src={nftBoxBorder} alt="Item Image" />
                                 </div>
                               </div>
+                              <div className="item-name-no">
+                                <div className="item-name-no-con">
+                                  <div className="item-name-bg">
+                                    <img src={itemNumberPlate} />
+                                  </div>
+                                  <div className="name-no">
+                                    <div>
+                                      <p>{nft.metadata.attributes[0].value}</p>
+                                      <p>{nft.contractMetadata.name}</p>
+                                    </div>
+                                    <div>
+                                      <p>
+                                        <span>No.</span>
+                                        {parseInt(nft.id.tokenId, 16)}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </Link>
-                      ))
-                  : null}
+                          </Link>
+                        ))
+                    : null}
 
-                {/* Modal */}
-                {modal && (
-                  <div className="modal">
-                    <div className="modal-overlay" onClick={toggleMadal}>
-                      <div className="modal-contant">
-                        <div className="modal-img">
-                          <img src={itemImg1} alt="NFT Image" />
-                        </div>
-                        <div className="modal-info">
-                          <div className="modal-item-top">
-                            <div className="modal-item-name">
-                              {/* <div className="modal-item-name-bg">
-                                    <img src={modalItemNameBg} alt="" />
-                                </div> */}
-                              <div>
-                                <p>Laser Cat</p>
-                              </div>
-                              <div>
-                                <p>No. 0345</p>
-                              </div>
-                            </div>
+                  {/* ModalCon */}
+                  {modalCon && (
+                    <div className="modal-con">
+                      <div
+                        className="modal-con-overlay"
+                        onClick={toggleMadalCon}
+                      >
+                        <div className="modal-con-contant">
+                          <div className="connect-btn">
+                            <button
+                              onClick={() => {
+                                fetchNFTs();
+                                _toggleSidebar();
+                              }}
+                            >
+                              Connect Wallet
+                            </button>
                           </div>
-                          <div className="item-details">
-                            <div className="details-box-group">
-                              <div className="details-box">
-                                <p>Type</p>
-                                <span>Cat</span>
-                              </div>
-                              <div className="details-box">
-                                <p>Type: </p>
-                                <span> Cat</span>
-                              </div>
-                            </div>
-                            <div className="details-box-group">
-                              <div className="details-box">
-                                <p>Type:</p>
-                                <span>Cat</span>
-                              </div>
-                              <div className="details-box">
-                                <p>Type:</p>
-                                <span>Cat</span>
-                              </div>
-                            </div>
-                            <div className="details-box-group">
-                              <div className="details-box">
-                                <p>Type:</p>
-                                <span>Cat</span>
-                              </div>
-                              <div className="details-box">
-                                <p>Type:</p>
-                                <span>Cat</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="viwe-box">
-                            <p>Wiew On......</p>
-                            <a href="" target="_blank">
-                              <img src={opensea} alt="" />
-                            </a>
-                          </div>
-                        </div>
-                        {/* <button className="modal-close" onClick={toggleMadal}>
-                                    X
-                                </button> */}
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {/* Modal */}
-                {/* ModalCon */}
-                {modalCon && (
-                  <div className="modal-con">
-                    <div className="modal-con-overlay" onClick={toggleMadalCon}>
-                      <div className="modal-con-contant">
-                        <div className="connect-btn">
-                          <button>Connect Wallet</button>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
-                {/* Modal */}
+                  )}
+                  {/* Modal */}
+                </div>
+
+                <div className="load-more">
+                  <button
+                    className="sbg-btn"
+                    onClick={() => {
+                      setShowCount(showCount + perPage);
+                    }}
+                  >
+                    Load more
+                  </button>
+                </div>
               </div>
-              <div className="load-more">
-                <button
-                  className="sbg-btn"
-                  onClick={() => {
-                    setShowCount(showCount + perPage);
-                  }}
-                >
-                  Load more
-                </button>
+              <div
+                className={
+                  menuActive ? "my-collection" : "my-collection d-none"
+                }
+              >
+                <div className="items-groups">
+                  {NFTs.length > 0
+                    ? NFTs.slice(0, showCount)
+                        .filter(
+                          (x) => inputField[x.metadata.attributes[0].value]
+                        )
+                        .map((nft, key) => (
+                          <Link
+                            to={`/nft-info/${parseInt(nft.id.tokenId, 16)}`}
+                          >
+                            <div className="item">
+                              <div className="item-img-box">
+                                <div className="item-img">
+                                  <img
+                                    src={nft.media[0].gateway}
+                                    alt="Item Image"
+                                  />
+                                </div>
+                                <div className="item-img-border">
+                                  <img src={nftBoxBorder} alt="Item Image" />
+                                </div>
+                              </div>
+                              <div className="item-name-no">
+                                <div className="item-name-no-con">
+                                  <div className="item-name-bg">
+                                    <img src={itemNumberPlate} />
+                                  </div>
+                                  <div className="name-no">
+                                    <div>
+                                      <p>{nft.metadata.attributes[0].value}</p>
+                                      <p>{nft.contractMetadata.name}</p>
+                                    </div>
+                                    <div>
+                                      <p>
+                                        <span>No.</span>
+                                        {parseInt(nft.id.tokenId, 16)}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ))
+                    : null}
+                </div>
               </div>
             </div>
           </div>

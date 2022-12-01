@@ -8,10 +8,10 @@ import cat4Image from "../assets/cat4.jpg";
 
 const Team = () => {
   return (
-    <div class="team-container">
+    <div className="team-container">
       <Header />
-      <div class="team">
-        <div class="team-title">
+      <div className="team">
+        <div className="team-title">
           <h1>The Omniverse Four</h1>
           <h2>
             The team at Omniverse is made up of artists, engineers, and
@@ -19,7 +19,7 @@ const Team = () => {
             film/animation industry for twenty plus years.
           </h2>
         </div>
-        <div class="team-images">
+        <div className="team-images">
           <span className="mem-image">
             <img src={cat1Image} />
             <p>
