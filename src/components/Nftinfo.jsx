@@ -7,13 +7,33 @@ import nftBoxBorder from "../assets/nft-box-border.png";
 import mintQtyBoxDiactive from "../assets/mint-qty-box-diactive.png";
 import itemImg1 from "../assets/cat1.jpg";
 import opensea from "../assets/opensea.png";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Nftinfo = () => {
   const [toggleState, setToggleState] = useState(1);
+  const { id } = useParams()
+  const [nft, setNft] = useState()
 
   const toggleTab = (inde) => {
     setToggleState(inde);
   };
+
+    useEffect(() => {
+    const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${process.env.REACT_APP_alchemy_api_key}/getNFTMetadata`;
+
+        var config = {
+          method: "get",
+          url: `${baseURL}?contractAddress=0xED5AF388653567Af2F388E6224dC7C4b3241C544&tokenId=${id}`,
+          headers: {},
+        };
+        axios(config)
+          .then((response) => {
+            setNft(response.data);
+            console.log(response.data);
+          })
+          .catch((error) => console.log(error.message));
+  }, [id]);
   return (
     <div className="nftinfo-container">
       <Header />
@@ -26,7 +46,7 @@ const Nftinfo = () => {
                 <img src={itemImg1} alt="" />
               </div>
               <div className="nftinfo-img-border">
-                <img src={nftBoxBorder} alt="" />
+                <img src={nft?.metadata.image} alt="" />
               </div>
             </div>
           </div>
@@ -38,7 +58,7 @@ const Nftinfo = () => {
                 </div>
                 <div>
                   <p>
-                    <span>NO: </span>3045
+                    <span>NO: </span>{parseInt(nft?.id.tokenId.toString(), 16)}
                   </p>
                 </div>
               </div>

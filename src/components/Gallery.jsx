@@ -556,7 +556,7 @@ const Gallery = () => {
                       .slice(0, showCount)
                       .filter((x) => inputField[x.metadata.attributes[0].value])
                       .map((nft, key) => (
-                        <Link to="/nft-info">
+                        <Link to={`/nft-info/${nft.id.tokenId}`}>
                           <div className="item">
                             <div className="item-img-box">
                               <div className="item-img">
