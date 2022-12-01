@@ -31,7 +31,7 @@ root.render(
       <Route path="/roadmap" element={<Roadmap />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/mint" element={<Mint />} />
-      <Route path="/nft-info" element={<Nftinfo />} />
+      <Route path="/nft-info/:id" element={<Nftinfo />} />
       <Route path="/mint-next" element={<Mintnext />} />
     </Routes>
     <Footer />
