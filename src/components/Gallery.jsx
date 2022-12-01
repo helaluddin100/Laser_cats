@@ -93,10 +93,10 @@ const Gallery = () => {
 
   // ==============filter section================
   const [inputField, setInputField] = useState({
-    Azuki: "true",
-    Human: "true",
-    rare: "false",
-    uncommon: "false",
+    Blue: true,
+    Human: true,
+    Red: false,
+    Spirit: false,
   });
 
   const onChange = (e) => {
@@ -168,12 +168,12 @@ const Gallery = () => {
                   <div className="check">
                     <input
                       type="checkbox"
-                      name="Azuki"
-                      checked={inputField.Azuki}
-                      value="Azuki"
+                      name="Blue"
+                      checked={inputField.Blue}
+                      value="Blue"
                       onChange={onChange}
                     />
-                    <p className="acme-white-24">Azuki</p>
+                    <p className="acme-white-24">BLUE</p>
                   </div>
                   <div className="check">
                     <input
@@ -183,28 +183,28 @@ const Gallery = () => {
                       onChange={onChange}
                       checked={inputField.Human}
                     />
-                    <p className="acme-white-24">Human</p>
-                  </div>
-                  {/* <div className="check">
-                    <input
-                      type="checkbox"
-                      name="rare"
-                      onChange={onChange}
-                      value="rare"
-                      checked={inputField.rare}
-                    />
-                    <p className="acme-white-24">RARE</p>
+                    <p className="acme-white-24">HUMAN</p>
                   </div>
                   <div className="check">
                     <input
                       type="checkbox"
-                      name="uncommon"
+                      name="Red"
                       onChange={onChange}
-                      value="uncommon"
-                      checked={inputField.uncommon}
+                      value="Red"
+                      checked={inputField.Red}
                     />
-                    <p className="acme-white-24">UNCOMMON</p>
-                  </div> */}
+                    <p className="acme-white-24">RED</p>
+                  </div>
+                  <div className="check">
+                    <input
+                      type="checkbox"
+                      name="Spirit"
+                      onChange={onChange}
+                      value="Spirit"
+                      checked={inputField.Spirit}
+                    />
+                    <p className="acme-white-24">SPIRIT</p>
+                  </div>
                 </div>
               </div>
             </div>
