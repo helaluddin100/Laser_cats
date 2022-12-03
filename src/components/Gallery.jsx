@@ -21,6 +21,8 @@ import { getDefaultProvider, utils } from "ethers";
 import { NftProvider, useNft } from "use-nft";
 import Nft from "./Nft";
 import axios from "axios";
+import Web3 from "web3";
+import Web3Modal from "web3modal";
 
 const ethersConfig = {
   provider: getDefaultProvider("homestead"),
@@ -53,7 +55,7 @@ const Gallery = () => {
   const toggleMadalCon = () => {
     setModalCon(!modalCon);
   };
-  const perPage = 50;
+  const perPage = 500;
   const [nfts, setNfts] = useState([]);
   const [showCount, setShowCount] = useState(perPage);
   const [address, setAddress] = useState(
@@ -65,7 +67,7 @@ const Gallery = () => {
   useEffect(() => {
     const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${process.env.REACT_APP_alchemy_api_key}/getNFTsForCollection`;
     const withMetadata = true;
-    const perPage = 50;
+    const perPage = 500;
     if (!utils.isAddress(address) && address != "") {
       setErrorMessageText("Invalid address");
       setNfts(null);
@@ -108,10 +110,42 @@ const Gallery = () => {
   }
 
   // ========================My Collection=====================
-  // const [wallet, setWalletAddress] = useState(
-  //   "0xcbcd0df9091ed3707df4e4a7d6c6ec09bdd040ec"
-  // );
-  const wallet = "0xcbcd0df9091ed3707df4e4a7d6c6ec09bdd040ec";
+  // =================connect wallet===================
+  // Connect Wallet
+  const [walletConnected, setWalletConnected] = useState(false);
+  const [walletAddress, setwalletAddress] = useState("");
+
+  const connectWallet = async () => {
+    if (Web3.givenProvider) {
+      const providerOptions = {};
+
+      const web3Modal = new Web3Modal({
+        network: "mainnet",
+        cacheProvider: true,
+        providerOptions,
+      });
+
+      const provider = await web3Modal.connect();
+      const web3 = new Web3(provider);
+
+      web3.eth.net.getId();
+
+      const addresses = await web3.eth.getAccounts();
+      const address = addresses[0];
+
+      const { ethereum } = window;
+
+      const networkId = await ethereum.request({
+        method: "net_version",
+      });
+
+      setWalletConnected(true);
+      setwalletAddress(address);
+    } else {
+      window.open(`https://metamask.app.link/dapp/apemafiaclub.com`);
+    }
+  };
+  const wallet = walletAddress;
   const [NFTs, setNFTs] = useState([]);
 
   const fetchNFTs = async () => {
@@ -628,7 +662,7 @@ const Gallery = () => {
                                   </div>
                                   <div className="name-no">
                                     <div>
-                                      <p>{nft.metadata.attributes[0].value}</p>
+                                      {/* <p>{nft.metadata.attributes[0].value}</p> */}
                                       <p>{nft.contractMetadata.name}</p>
                                     </div>
                                     <div>
@@ -658,6 +692,7 @@ const Gallery = () => {
                               onClick={() => {
                                 fetchNFTs();
                                 _toggleSidebar();
+                                connectWallet();
                               }}
                             >
                               Connect Wallet
@@ -715,7 +750,7 @@ const Gallery = () => {
                                   </div>
                                   <div className="name-no">
                                     <div>
-                                      <p>{nft.metadata.attributes[0].value}</p>
+                                      {/* <p>{nft.metadata.attributes[0].value}</p> */}
                                       <p>{nft.contractMetadata.name}</p>
                                     </div>
                                     <div>
