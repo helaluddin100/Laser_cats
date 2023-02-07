@@ -13,6 +13,7 @@ import Gallery from "./components/Gallery";
 import Mint from "./components/Mint";
 import Nftinfo from "./components/Nftinfo";
 import Mintnext from "./components/Mintnext";
+import Gallery2 from "./components/Gallery2";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 /*root.render(
@@ -33,6 +34,7 @@ root.render(
       <Route path="/mint" element={<Mint />} />
       <Route path="/nft-info/:id" element={<Nftinfo />} />
       <Route path="/mint-next" element={<Mintnext />} />
+      <Route path="/gallery2" element={<Gallery2 />} />
     </Routes>
     <Footer />
   </Router>
